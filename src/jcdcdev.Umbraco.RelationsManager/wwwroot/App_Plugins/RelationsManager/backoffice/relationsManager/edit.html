@@ -1,0 +1,11 @@
+<script type="module" defer="defer"
+        src="/App_Plugins/RelationsManager/dist/jcdcdev-umbraco-relationsmanager.js"></script>
+<div id="relations-manager-app"></div>
+<script>
+    init = () => {
+        const target = document.getElementById('relations-manager-app');
+        const app = document.createElement('relations-manager')
+        target.replaceWith(app);
+    }
+    init();
+</script>
