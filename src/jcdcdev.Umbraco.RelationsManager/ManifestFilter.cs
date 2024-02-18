@@ -11,7 +11,7 @@ internal class ManifestFilter : IManifestFilter
             PackageName = "jcdcdev.Umbraco.RelationsManager",
             Version = GetType().Assembly.GetName().Version?.ToString(3) ?? "0.1.0",
             AllowPackageTelemetry = true,
-            Sections = new []
+            Sections = new[]
             {
                 new ManifestSection
                 {

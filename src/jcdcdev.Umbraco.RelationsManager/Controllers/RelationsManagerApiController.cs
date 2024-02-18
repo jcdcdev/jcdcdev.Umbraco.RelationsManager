@@ -145,7 +145,7 @@ public class RelationsManagerApiController : UmbracoApiController
             Items = items
         };
 
-        var model = new RelationTypeModel()
+        var model = new RelationTypeModel
         {
             Id = relationType.Id,
             Name = relationType.Name,

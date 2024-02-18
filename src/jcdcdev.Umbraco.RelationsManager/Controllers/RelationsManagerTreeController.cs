@@ -8,7 +8,7 @@ using Umbraco.Cms.Core.Trees;
 using Umbraco.Cms.Web.BackOffice.Trees;
 using Umbraco.Cms.Web.Common.Attributes;
 using Umbraco.Extensions;
-using UmbracoConstants = global::Umbraco.Cms.Core.Constants;
+using UmbracoConstants = Umbraco.Cms.Core.Constants;
 
 namespace jcdcdev.Umbraco.RelationsManager.Controllers;
 
@@ -19,8 +19,21 @@ public class RelationsManagerTreeController : TreeController
     public const string Area = "relationsManager";
     private const string Alias = "relationsManager";
     private const string Section = Constants.Section.Alias;
-    private readonly IRelationService _relationService;
     private readonly IMenuItemCollectionFactory _menuItemCollectionFactory;
+    private readonly IRelationService _relationService;
+
+    public RelationsManagerTreeController(
+        ILocalizedTextService localizedTextService,
+        UmbracoApiControllerTypeCollection umbracoApiControllerTypeCollection,
+        IEventAggregator eventAggregator,
+        IRelationService relationService,
+        IMenuItemCollectionFactory menuItemCollectionFactory) : base(
+        localizedTextService, umbracoApiControllerTypeCollection,
+        eventAggregator)
+    {
+        _relationService = relationService;
+        _menuItemCollectionFactory = menuItemCollectionFactory;
+    }
 
     protected override ActionResult<TreeNode?> CreateRootNode(FormCollection queryStrings)
     {
@@ -68,15 +81,5 @@ public class RelationsManagerTreeController : TreeController
 
         menu.Items.Add(item);
         return menu;
-    }
-
-    public RelationsManagerTreeController(ILocalizedTextService localizedTextService,
-        UmbracoApiControllerTypeCollection umbracoApiControllerTypeCollection, IEventAggregator eventAggregator,
-        IRelationService relationService, IMenuItemCollectionFactory menuItemCollectionFactory) : base(
-        localizedTextService, umbracoApiControllerTypeCollection,
-        eventAggregator)
-    {
-        _relationService = relationService;
-        _menuItemCollectionFactory = menuItemCollectionFactory;
     }
 }
