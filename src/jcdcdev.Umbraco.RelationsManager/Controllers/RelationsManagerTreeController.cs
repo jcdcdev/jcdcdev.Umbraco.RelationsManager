@@ -70,14 +70,13 @@ public class RelationsManagerTreeController : TreeController
             return menu;
         }
 
-        // add menu item to go to relations edit url
         var item = new MenuItem("editRelationType", "Edit relation type")
         {
-            Icon = "icon-settings",
+            Icon = "settings",
             SeparatorBefore = true
         };
-        item.NavigateToRoute(
-            $"/{UmbracoConstants.Applications.Settings}/{UmbracoConstants.Trees.RelationTypes}/edit/{relationType.Id}");
+
+        item.NavigateToRoute($"/{UmbracoConstants.Applications.Settings}/{UmbracoConstants.Trees.RelationTypes}/edit/{relationType.Id}");
 
         menu.Items.Add(item);
         return menu;
