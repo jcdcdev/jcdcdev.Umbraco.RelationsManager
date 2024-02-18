@@ -1,0 +1,16 @@
+name: Build
+on:
+  pull_request:
+    branches: "*"
+  workflow_dispatch:
+jobs:
+  build:
+    permissions:
+      contents: write
+    uses: jcdcdev/jcdcdev.Github.UmbracoSimpleDeploy/.github/workflows/build-template.yml@main
+    with:
+      project-name: 'jcdcdev.Umbraco.RelationsManager'
+      project-path: './src/jcdcdev.Umbraco.RelationsManager/jcdcdev.Umbraco.RelationsManager.csproj'
+      npm-enabled: true
+      npm-working-dir: './src/jcdcdev.Umbraco.RelationsManager.Client/'
+      npm-run-command: 'build'

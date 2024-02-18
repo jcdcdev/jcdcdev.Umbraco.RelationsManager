@@ -1,0 +1,29 @@
+name: Release
+on:
+  pull_request:
+    branches: "main"
+    types: [ closed ]
+  workflow_dispatch:
+jobs:
+  build:
+    uses: jcdcdev/jcdcdev.Github.UmbracoSimpleDeploy/.github/workflows/build-template.yml@main
+    with:
+      project-name: 'jcdcdev.Umbraco.RelationsManager'
+      project-path: './src/jcdcdev.Umbraco.RelationsManager/jcdcdev.Umbraco.RelationsManager.csproj'
+      npm-enabled: true
+      npm-working-dir: './src/jcdcdev.Umbraco.RelationsManager.Client/'
+      npm-run-command: 'build'
+    outputs:
+      artifact-name: ${{ steps.build.outputs.artifact-name }}
+      version: ${{ steps.build.outputs.version }}
+  release:
+    needs:
+      - build
+    permissions:
+      contents: write
+    uses: jcdcdev/jcdcdev.Github.UmbracoSimpleDeploy/.github/workflows/release-template.yml@main
+    with:
+      artifact-name: ${{ needs.build.outputs.artifact-name }}
+      version: ${{ needs.build.outputs.version }}
+    secrets:
+      nuget-api-key: ${{ secrets.NUGET_API_KEY }}
