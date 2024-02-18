@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+		<LangVersion>10</LangVersion>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+		<ContentTargetFolders>.</ContentTargetFolders>
+		<Product>jcdcdev.Umbraco.RelationsManager</Product>
+		<PackageId>jcdcdev.Umbraco.RelationsManager</PackageId>
+		<Title>Relations Manager</Title>
+		<Description>Create and manage Relation Types</Description>
+		<PackageTags>umbraco;umbraco-marketplace</PackageTags>
+		<Authors>James C</Authors>
+		<Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © James C</Copyright>
+		<PackageProjectUrl>https://github.com/jcdcdev/jcdcdev.Umbraco.RelationsManager</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TOKEN_jcdcdev/jcdcdev.Umbraco.RelationsManager</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>images\icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<PackageReference Include="Umbraco.Cms.Core" Version="[10.4.0,11.0.0)"/>
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[10.4.0,11.0.0)"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Umbraco.Cms.Core" Version="[11.0.0,13.0.0)"/>
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[11.0.0,13.0.0)"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+		<PackageReference Include="Umbraco.Cms.Core" Version="[13.0.0,14.0.0)"/>
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.0,14.0.0)"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\docs\icon.png" Pack="true" Visible="false" PackagePath="images\icon.png"/>
+		<None Include="..\..\.github\README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Umbraco.Community.SimpleDashboards" Version="0.2.2" />
+	</ItemGroup>
+</Project>
