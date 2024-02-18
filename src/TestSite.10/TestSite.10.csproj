@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\jcdcdev.Umbraco.RelationsManager\jcdcdev.Umbraco.RelationsManager.csproj" />
+		<ProjectReference Include="..\jcdcdev.Umbraco.RelationsManager\jcdcdev.Umbraco.RelationsManager.csproj"/>
 	</ItemGroup>
 
 	<PropertyGroup>

@@ -1,0 +1,8 @@
+<language>
+	<area alias="treeHeaders">
+		<key alias="relationsManagerGroup">Relations</key>
+	</area>
+	<area alias="sections">
+		<key alias="relationsManager">Relations Manager</key>
+	</area>
+</language>
