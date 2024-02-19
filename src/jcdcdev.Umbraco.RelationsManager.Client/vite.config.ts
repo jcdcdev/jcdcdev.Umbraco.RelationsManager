@@ -6,7 +6,7 @@ export default defineConfig({
             entry: "src/index.ts", // your web component source file
             formats: ["es"],
         },
-        outDir: "../jcdcdev.Umbraco.RelationsManager/wwwroot/App_Plugins/RelationsManager/dist/", // your web component will be saved in this location
+        outDir: "../jcdcdev.Umbraco.RelationsManager/wwwroot/App_Plugins/relationsManager/dist/", // your web component will be saved in this location
         sourcemap: true,
         rollupOptions: {
             // external: [/^@umbraco-ui/],
