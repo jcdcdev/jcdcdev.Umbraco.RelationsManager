@@ -173,9 +173,9 @@ public class RelationsManagerApiController : UmbracoApiController
     {
         return entity switch
         {
+            IMemberEntitySlim member => "member",
             IMediaEntitySlim media => "media",
             IContentEntitySlim content => "document",
-            IMember member => "member",
             _ => ""
         };
     }
