@@ -14,7 +14,7 @@
 		<PackageTags>umbraco;umbraco-marketplace</PackageTags>
 		<Authors>James C</Authors>
 		<Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © James C</Copyright>
-		<PackageProjectUrl>https://github.com/jcdcdev/jcdcdev.Umbraco.RelationsManager</PackageProjectUrl>
+		<PackageProjectUrl>https://jcdc.dev/umbraco-packages/relations-manager</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/jcdcdev/jcdcdev.Umbraco.RelationsManager</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryType>git</RepositoryType>
