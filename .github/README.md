@@ -1,6 +1,6 @@
 # jcdcdev.Umbraco.RelationsManager
 
-[![Umbraco Version](https://img.shields.io/badge/Umbraco-10.4+-%233544B1?style=flat&logo=umbraco)](https://umbraco.com/products/umbraco-cms/)
+[![Umbraco Version](https://img.shields.io/badge/Umbraco-10.4+-%233544B1?style=flat&logo=umbraco)](https://marketplace.umbraco.com/package/jcdcdev.umbraco.relationsmanager)
 [![Umbraco UUI](https://img.shields.io/badge/Powered%20by-Umbraco%20UI-%233544B1?style=flat&logo=umbraco)](https://uui.umbraco.com/)
 [![NuGet](https://img.shields.io/nuget/vpre/jcdcdev.Umbraco.RelationsManager?color=0273B3)](https://www.nuget.org/packages/jcdcdev.Umbraco.RelationsManager)
 [![GitHub license](https://img.shields.io/github/license/jcdcdev/jcdcdev.Umbraco.RelationsManager?color=8AB803)](../LICENSE)
@@ -10,7 +10,7 @@ Create and manage Relation Types directly from the Umbraco backoffice.
 
 ## Quick Start
 
-1. Install the [NuGet package](https://www.nuget.org/packages/jcdcdev.Umbraco.ReadingTime) in your Umbraco CMS website project.
+1. Install the [NuGet package](https://www.nuget.org/packages/jcdcdev.Umbraco.RelationsManager) in your Umbraco CMS website project.
 2. Configure user group permissions
    1. Add the `Relations Manager` section
    ![A screenshot of the BackOffice user groups](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Umbraco.RelationsManager/main/docs/screenshots/permissions.png)
