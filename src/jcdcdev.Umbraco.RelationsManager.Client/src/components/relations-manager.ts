@@ -59,13 +59,13 @@ export class RelationsManager extends LitElement {
 
     private _renderTabs() {
         return html`
-            <div @click="${() => this.toggleTabs("edit")}">
-                <uui-tab ?active="${this.showRelationsManager}" id="edit">Edit</uui-tab>
-            </div>
-            <div @click="${() => this.toggleTabs("create")}">
-                <uui-tab ?active="${this.showCreateEditor}" id="create">Create</uui-tab>
-            </div>
-        `;
+            <uui-tab @click="${() => this.toggleTabs("edit")}" ?active="${this.showRelationsManager}" id="edit">
+                Edit
+            </uui-tab>
+            <uui-tab @click="${() => this.toggleTabs("create")}" ?active="${this.showCreateEditor}" id="create">
+                Create
+            </uui-tab>
+		`;
     }
 
     toggleTabs = (tab: string) => {
