@@ -47,7 +47,7 @@ export class RelationsManager extends LitElement {
     private _renderActiveTab(): TemplateResult | null {
         if (this.showCreateEditor) {
             return html`
-                <create-relation-edtior .relationTypeId="${this.relationTypeId}"></create-relation-edtior>
+                <create-relation-editor .relationTypeId="${this.relationTypeId}"></create-relation-editor>
             `;
         } else if (this.showRelationsManager) {
             return html`

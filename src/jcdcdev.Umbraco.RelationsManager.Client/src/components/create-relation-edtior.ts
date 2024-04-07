@@ -4,7 +4,7 @@ import { LegacyServices } from '../legacyServices';
 import { RelationTypeModel, RelationsManagerService } from '../relationsManagerService';
 import { UUITextStyles } from '@umbraco-ui/uui';
 
-@customElement('create-relation-edtior')
+@customElement('create-relation-editor')
 export class CreateRelationEditor extends LitElement {
 
     @state()
@@ -441,6 +441,6 @@ export class CreateRelationEditor extends LitElement {
 
 declare global {
     interface HTMLElementTagNameMap {
-        'create-relation-edtior': CreateRelationEditor;
+        'create-relation-editor': CreateRelationEditor;
     }
 }
