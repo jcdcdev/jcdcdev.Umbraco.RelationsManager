@@ -1,20 +1,20 @@
-name: Release
+name: 🚀 Release
 on:
-  pull_request:
-    branches: "main"
-    types: [ closed ]
   workflow_dispatch:
 jobs:
+  metadata:
+    uses: jcdcdev/jcdcdev.Github.UmbracoSimpleDeploy/.github/workflows/generate-project-metadata.yml@main
   build:
-    uses: jcdcdev/jcdcdev.Github.UmbracoSimpleDeploy/.github/workflows/build-template.yml@main
+    uses: jcdcdev/jcdcdev.Github.UmbracoSimpleDeploy/.github/workflows/build-template.yml@main    
+    needs: 
+      - metadata
     with:
-      project-name: 'jcdcdev.Umbraco.RelationsManager'
-      project-path: './src/jcdcdev.Umbraco.RelationsManager/jcdcdev.Umbraco.RelationsManager.csproj'
+      project-name: ${{ needs.metadata.outputs.project-name }}
+      project-path: ${{ needs.metadata.outputs.project-path }}
+      npm-working-dir: ${{ needs.metadata.outputs.npm-working-dir }}
       npm-enabled: true
-      npm-working-dir: './src/jcdcdev.Umbraco.RelationsManager.Client/'
-      npm-run-command: 'build'
   release:
-    needs:
+    needs: 
       - build
     permissions:
       contents: write
