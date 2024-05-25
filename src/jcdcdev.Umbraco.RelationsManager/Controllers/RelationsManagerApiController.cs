@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.Entities;
 using Umbraco.Cms.Core.Services;
-using Umbraco.Cms.Web.BackOffice.Filters;
 using Umbraco.Cms.Web.Common.Attributes;
 using Umbraco.Cms.Web.Common.Authorization;
 using Umbraco.Cms.Web.Common.Controllers;
@@ -14,14 +13,10 @@ using Umbraco.Extensions;
 namespace jcdcdev.Umbraco.RelationsManager.Controllers;
 
 [PluginController(RelationsManagerTreeController.Area)]
-[JsonExceptionFilter]
 [IsBackOffice]
 [UmbracoUserTimeoutFilter]
 [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
 [DisableBrowserCache]
-[UmbracoRequireHttps]
-// [CheckIfUserTicketDataIsStale]
-[MiddlewareFilter(typeof(UnhandledExceptionLoggerFilter))]
 public class RelationsManagerApiController : UmbracoApiController
 {
     private readonly IRelationService _relationService;
