@@ -15,7 +15,6 @@ Contributions to this package are most welcome! Please read the [Contributing Gu
 - LottePitcher - [opinionated-package-starter](https://github.com/LottePitcher/opinionated-package-starter)
 - jcdcdev - [jcdcdev.Umbraco.PackageTemplate](https://github.com/jcdcdev/jcdcdev.Umbraco.PackageTemplate)
 
-
 ## Notes
 
 This project uses the new (awesome) [Umbraco UI (UUI)](https://uui.umbraco.com/) which is still under active development.
