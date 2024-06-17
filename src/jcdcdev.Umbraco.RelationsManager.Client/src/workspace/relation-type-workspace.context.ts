@@ -29,7 +29,7 @@ export class RelationTypeManagerWorkspaceContext
 	}
 
 	destroy(): void {
-		throw new Error("Method not implemented.");
+		this.routes.destroy();
 	}
 
 	getEntityType = () => RELATION_TYPE_TREE_ITEM_TYPE;
