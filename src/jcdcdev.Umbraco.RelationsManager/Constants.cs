@@ -2,9 +2,8 @@
 
 public static class Constants
 {
-    public static class Section
+    public class Api
     {
-        public const string Alias = "relationsManager";
-        public const string Name = "Relations Manager";
+        public const string ApiName = "RelationsManager";
     }
 }

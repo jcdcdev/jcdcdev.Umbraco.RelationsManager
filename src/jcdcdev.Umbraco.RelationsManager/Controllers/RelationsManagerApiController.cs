@@ -1,81 +1,23 @@
 ﻿using jcdcdev.Umbraco.RelationsManager.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Umbraco.Cms.Core.Models;
+using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Models.Entities;
 using Umbraco.Cms.Core.Services;
-using Umbraco.Cms.Web.Common.Attributes;
-using Umbraco.Cms.Web.Common.Authorization;
-using Umbraco.Cms.Web.Common.Controllers;
-using Umbraco.Cms.Web.Common.Filters;
 using Umbraco.Extensions;
 
 namespace jcdcdev.Umbraco.RelationsManager.Controllers;
 
-[PluginController(RelationsManagerTreeController.Area)]
-[IsBackOffice]
-[UmbracoUserTimeoutFilter]
-[Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
-[DisableBrowserCache]
-public class RelationsManagerApiController : UmbracoApiController
+[ApiExplorerSettings(GroupName = "Relation")]
+public class RelationsManagerApiController(IRelationService relationService, ILogger<RelationsManagerApiController> logger) : RelationsManagerApiControllerBase(relationService)
 {
-    private readonly IRelationService _relationService;
-
-    public RelationsManagerApiController(IRelationService relationService)
+    [HttpGet("relation/{id:guid}", Name = "GetRelation")]
+    [Produces<RelationTypeModel>]
+    public IActionResult Get(Guid id, int page = 1, int take = 10, string sort = "", bool desc = true)
     {
-        _relationService = relationService;
-    }
-
-    [HttpDelete]
-    public IActionResult Delete([FromBody] DeleteModel model)
-    {
-        var relations = _relationService.GetByRelationTypeId(model.RelationTypeId);
-        relations = relations?.Where(x => model.Ids.Contains(x.Id)).ToList();
-        if (relations == null)
-        {
-            return NotFound();
-        }
-
-        foreach (var relation in relations)
-        {
-            _relationService.Delete(relation);
-        }
-
-        return Ok();
-    }
-
-    [HttpPost]
-    public IActionResult Create([FromBody] CreateModel model)
-    {
-        var relationType = _relationService.GetRelationTypeById(model.RelationTypeId);
+        var relationType = RelationService.GetRelationTypeById(id);
         if (relationType == null)
         {
-            return NotFound();
-        }
-
-        var relation = _relationService.GetByParentAndChildId(model.ParentId, model.ChildId, relationType);
-        if (relation != null)
-        {
-            return BadRequest("Relation already exists");
-        }
-
-        relation = new Relation(model.ParentId, model.ChildId, relationType)
-        {
-            Comment = model.Comment
-        };
-
-        _relationService.Save(relation);
-
-        return Ok(relation.Id);
-    }
-
-    [HttpGet]
-    public IActionResult GetRelationType(int id, int page = 1, int take = 10, string sort = "", bool desc = true)
-    {
-        var relationType = _relationService.GetRelationTypeById(id);
-        if (relationType == null)
-        {
-            return NotFound();
+            return NoContent();
         }
 
         if (take == -1)
@@ -83,14 +25,24 @@ public class RelationsManagerApiController : UmbracoApiController
             take = int.MaxValue;
         }
 
-        var relations = _relationService.GetByRelationTypeId(relationType.Id)?.ToList() ?? new List<IRelation>();
+        var relations = RelationService.GetByRelationTypeId(relationType.Id)?.ToList() ?? [];
         var total = relations.Count;
         var totalPages = total / take + (total % take > 0 ? 1 : 0);
 
         var items = new List<RelationModel>();
         foreach (var x in relations)
         {
-            var (parent, child) = _relationService.GetEntitiesFromRelation(x);
+            var result = RelationService.GetEntitiesFromRelation(x);
+
+            var parent = result?.Item1;
+            var child = result?.Item2;
+
+            if (parent == null || child == null)
+            {
+                logger.LogWarning("Relation {RelationId} has missing parent or child", x.Id);
+                continue;
+            }
+
             var item = new RelationModel
             {
                 ParentId = x.ParentId,
@@ -164,41 +116,18 @@ public class RelationsManagerApiController : UmbracoApiController
         };
     }
 
-    private string GetEntityType(IUmbracoEntity entity)
+    private string GetEntityType(IUmbracoEntity entity) => entity switch
     {
-        return entity switch
-        {
-            IMemberEntitySlim member => "member",
-            IMediaEntitySlim media => "media",
-            IContentEntitySlim content => "document",
-            _ => ""
-        };
-    }
+        IMemberEntitySlim => "member",
+        IMediaEntitySlim => "media",
+        IContentEntitySlim => "document",
+        _ => ""
+    };
 
-    private string GetUrl(IUmbracoEntity entity)
+    private static string GetUrl(IEntity entity) => entity switch
     {
-        switch (entity)
-        {
-            case IMediaEntitySlim media:
-                return $"/umbraco#/media/media/edit/{entity.Id}";
-            case IContentEntitySlim content:
-                return $"/umbraco#/content/content/edit/{entity.Id}";
-        }
-
-        return $"/umbraco#/member/member/edit/{entity.Id}";
-    }
-}
-
-public class DeleteModel
-{
-    public int[] Ids { get; set; }
-    public int RelationTypeId { get; set; }
-}
-
-public class CreateModel
-{
-    public int ParentId { get; set; }
-    public int ChildId { get; set; }
-    public int RelationTypeId { get; set; }
-    public string Comment { get; set; }
+        IMediaEntitySlim => $"/umbraco#/media/media/edit/{entity.Id}",
+        IContentEntitySlim => $"/umbraco#/content/content/edit/{entity.Id}",
+        _ => $"/umbraco#/member/member/edit/{entity.Id}"
+    };
 }
