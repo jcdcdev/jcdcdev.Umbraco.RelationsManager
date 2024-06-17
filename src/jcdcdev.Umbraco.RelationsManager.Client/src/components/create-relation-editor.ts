@@ -435,7 +435,6 @@ export class CreateRelationEditor extends UmbElementMixin(LitElement) {
 			}
 		};
 		const response = await this.#context.create(request)
-		debugger;
 		if (response.error) {
 			// @ts-ignore
 			this.errorMessage = response.error.body;
