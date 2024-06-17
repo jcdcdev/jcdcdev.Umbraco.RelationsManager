@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<LangVersion>10</LangVersion>
+		<TargetFramework>net8.0</TargetFramework>
+		<LangVersion>12</LangVersion>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -23,14 +23,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Umbraco.Cms.Core" Version="[10.4.0,11.0.0)"/>
-		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[10.4.0,11.0.0)"/>
-		<PackageReference Include="Umbraco.Community.SimpleDashboards" Version="10.0.0"/>
-		<PackageReference Include="jcdcdev.Umbraco.Core" Version="10.1.0"/>
+		<PackageReference Include="Umbraco.Cms.Api.Common" Version="14.0.0" />
+		<PackageReference Include="Umbraco.Cms.Api.Management" Version="14.0.0" />
+		<PackageReference Include="Umbraco.Cms.Core" Version="[14.0.0,15.0.0)"/>
+		<PackageReference Include="jcdcdev.Umbraco.Core" Version="[14.0.0,15.0.0)"/>
 	</ItemGroup>
-	
+
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-		<Major>UMBRACO_VERSION</Major>
+		<Major>14</Major>
 		<Minor>$([System.DateTime]::UtcNow.ToString(`yyyy`))</Minor>
 		<Patch>$([System.DateTime]::UtcNow.ToString(`MMdd`).TrimStart(`0`))</Patch>
 		<Suffix>-alpha-$([System.DateTime]::UtcNow.ToString(`Hmm-ss`).TrimStart(`.`))</Suffix>
