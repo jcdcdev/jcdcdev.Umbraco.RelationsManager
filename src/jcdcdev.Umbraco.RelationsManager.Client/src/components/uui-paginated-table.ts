@@ -2,7 +2,7 @@
 import { property, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { customElement } from 'lit/decorators.js';
-import { UUIPaginationEvent, UUITextStyles } from '@umbraco-ui/uui';
+import {UUIPaginationEvent, UUITextStyles} from '@umbraco-cms/backoffice/external/uui';
 
 export class TableColumn {
     constructor(name: string, alias: string) {

@@ -1,0 +1,13 @@
+{
+	"$schema": "umbraco-package-schema.json",
+	"version": "14.0.0",
+	"name": "Relations Manager",
+	"extensions": [
+		{
+			"name": "relations-manager.entrypoint",
+			"alias": "relations-manager.entrypoint",
+			"type": "entryPoint",
+			"js": "/App_Plugins/RelationsManager/dist/index.js"
+		}
+	]
+}
