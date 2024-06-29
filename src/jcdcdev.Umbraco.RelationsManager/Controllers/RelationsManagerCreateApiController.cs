@@ -14,7 +14,6 @@ public class RelationsManagerCreateApiController(IRelationService relationServic
     [HttpPost("relation", Name = "CreateRelation")]
     [Produces<int>]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    // [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([FromBody] CreateRequestModel requestModel)
     {

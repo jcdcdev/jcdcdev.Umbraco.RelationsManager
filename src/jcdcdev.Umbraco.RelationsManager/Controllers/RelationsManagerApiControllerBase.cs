@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Api.Common.Attributes;
 using Umbraco.Cms.Api.Common.Filters;
 using Umbraco.Cms.Api.Common.ViewModels.Pagination;
 using Umbraco.Cms.Api.Management.Filters;
 using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Web.Common.Authorization;
 using Umbraco.Cms.Web.Common.Routing;
 
 namespace jcdcdev.Umbraco.RelationsManager.Controllers;
@@ -12,8 +14,7 @@ namespace jcdcdev.Umbraco.RelationsManager.Controllers;
 [MapToApi(Constants.Api.ApiName)]
 [JsonOptionsName(global::Umbraco.Cms.Core.Constants.JsonOptionsNames.BackOffice)]
 [ApiController]
-// [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
-// [Authorize(Policy = AuthorizationPolicies.UmbracoFeatureEnabled)]
+[Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
 [AppendEventMessages]
 [Produces("application/json")]
 public class RelationsManagerApiControllerBase(IRelationService relationService) : ControllerBase
