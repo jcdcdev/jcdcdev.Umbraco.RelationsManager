@@ -1,6 +1,8 @@
 version: 2
 updates:
   - package-ecosystem: nuget
+    assignees:
+      - "jcdcdev"
     directory: "/"
     schedule:
       interval: "daily"
@@ -11,6 +13,8 @@ updates:
     target-branch: "dev"
 
   - package-ecosystem: npm
+    assignees:
+      - "jcdcdev"
     directory: "/"
     schedule:
       interval: "daily"
