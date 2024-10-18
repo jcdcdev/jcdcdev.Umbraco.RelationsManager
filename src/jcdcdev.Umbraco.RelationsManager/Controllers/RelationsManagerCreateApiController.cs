@@ -15,7 +15,7 @@ public class RelationsManagerCreateApiController(IRelationService relationServic
     [Produces<int>]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Create([FromBody] CreateRequestModel requestModel)
+    public IActionResult Create([FromBody] CreateRequestModel requestModel)
     {
         var relationType = RelationService.GetRelationTypeById(requestModel.RelationType);
         if (relationType == null)
@@ -35,7 +35,7 @@ public class RelationsManagerCreateApiController(IRelationService relationServic
         {
             return BadRequest("Relation already exists");
         }
-        
+
         var relation = new Relation(parent.Id, child.Id, relationType)
         {
             Comment = requestModel.Comment
