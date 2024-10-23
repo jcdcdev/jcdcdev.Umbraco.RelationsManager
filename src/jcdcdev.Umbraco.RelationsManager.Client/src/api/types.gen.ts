@@ -4,7 +4,7 @@ export type CreateRequestModel = {
     parentId: string;
     childId: string;
     relationType: string;
-    comment?: string | null;
+    comment?: (string) | null;
 };
 
 export enum EventMessageTypeModel {
@@ -41,34 +41,34 @@ export type ReferenceByIdModel = {
 export type RelationModel = {
     parentId: number;
     childId: number;
-    comment?: string | null;
+    comment?: (string) | null;
     id: number;
     createDate: string;
     relationType: number;
-    childName?: string | null;
-    parentName?: string | null;
-    childUrl?: string | null;
-    parentUrl?: string | null;
-    childEntityType?: string | null;
-    parentEntityType?: string | null;
+    childName?: (string) | null;
+    parentName?: (string) | null;
+    childUrl?: (string) | null;
+    parentUrl?: (string) | null;
+    childEntityType?: (string) | null;
+    parentEntityType?: (string) | null;
 };
 
 export type RelationTypeModel = {
     id: number;
-    name?: string | undefined;
-    alias?: string | undefined;
-    parentEntityType?: string | undefined;
-    childEntityType?: string | undefined;
-    relations: PaginationModel_1;
+    name?: (string) | null;
+    alias?: (string) | null;
+    parentEntityType?: (string) | null;
+    childEntityType?: (string) | null;
+    relations: (PaginationModel_1);
 };
 
 export type RelationTypeTreeItemResponseModel = {
-    name?: string | null;
+    name?: (string) | null;
     id: string;
-    childObjectType?: string | null;
-    parentObjectType?: string | null;
+    childObjectType?: (string) | null;
+    parentObjectType?: (string) | null;
     hasChildren: boolean;
-    parent?: ReferenceByIdModel | null;
+    parent?: ((ReferenceByIdModel) | null);
 };
 
 export type GetUmbracoRelationsmanagerApiV1TreeItemNullData = {
@@ -76,20 +76,20 @@ export type GetUmbracoRelationsmanagerApiV1TreeItemNullData = {
     take?: number;
 };
 
-export type GetUmbracoRelationsmanagerApiV1TreeItemNullResponse = PagedRelationTypeTreeItemResponseModel;
+export type GetUmbracoRelationsmanagerApiV1TreeItemNullResponse = ((PagedRelationTypeTreeItemResponseModel));
 
 export type GetUmbracoRelationsmanagerApiV1TreeRootData = {
     skip?: number;
     take?: number;
 };
 
-export type GetUmbracoRelationsmanagerApiV1TreeRootResponse = PagedRelationTypeTreeItemResponseModel;
+export type GetUmbracoRelationsmanagerApiV1TreeRootResponse = ((PagedRelationTypeTreeItemResponseModel));
 
 export type PostUmbracoRelationsmanagerApiV1RelationData = {
-    requestBody?: CreateRequestModel;
+    requestBody?: (CreateRequestModel);
 };
 
-export type PostUmbracoRelationsmanagerApiV1RelationResponse = number | string;
+export type PostUmbracoRelationsmanagerApiV1RelationResponse = (number | string);
 
 export type GetUmbracoRelationsmanagerApiV1RelationByIdData = {
     desc?: boolean;
@@ -99,74 +99,10 @@ export type GetUmbracoRelationsmanagerApiV1RelationByIdData = {
     take?: number;
 };
 
-export type GetUmbracoRelationsmanagerApiV1RelationByIdResponse = RelationTypeModel;
+export type GetUmbracoRelationsmanagerApiV1RelationByIdResponse = ((RelationTypeModel));
 
 export type DeleteUmbracoRelationsmanagerApiV1RelationByIdData = {
     id: number;
 };
 
-export type DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse = string;
-
-export type $OpenApiTs = {
-    '/umbraco/relationsmanager/api/v1/tree/item/null': {
-        get: {
-            req: GetUmbracoRelationsmanagerApiV1TreeItemNullData;
-            res: {
-                /**
-                 * OK
-                 */
-                200: PagedRelationTypeTreeItemResponseModel;
-            };
-        };
-    };
-    '/umbraco/relationsmanager/api/v1/tree/root': {
-        get: {
-            req: GetUmbracoRelationsmanagerApiV1TreeRootData;
-            res: {
-                /**
-                 * OK
-                 */
-                200: PagedRelationTypeTreeItemResponseModel;
-            };
-        };
-    };
-    '/umbraco/relationsmanager/api/v1/relation': {
-        post: {
-            req: PostUmbracoRelationsmanagerApiV1RelationData;
-            res: {
-                /**
-                 * OK
-                 */
-                200: number;
-                /**
-                 * Created
-                 */
-                201: string;
-                /**
-                 * Bad Request
-                 */
-                400: string;
-            };
-        };
-    };
-    '/umbraco/relationsmanager/api/v1/relation/{id}': {
-        get: {
-            req: GetUmbracoRelationsmanagerApiV1RelationByIdData;
-            res: {
-                /**
-                 * OK
-                 */
-                200: RelationTypeModel;
-            };
-        };
-        delete: {
-            req: DeleteUmbracoRelationsmanagerApiV1RelationByIdData;
-            res: {
-                /**
-                 * OK
-                 */
-                200: string;
-            };
-        };
-    };
-};
+export type DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse = (string);

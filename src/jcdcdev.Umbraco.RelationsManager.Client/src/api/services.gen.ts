@@ -83,6 +83,7 @@ export const getUmbracoRelationsmanagerApiV1RelationById = (data: GetUmbracoRela
  * @param data The data for the request.
  * @param data.id
  * @returns string OK
+ * @returns string No Content
  * @throws ApiError
  */
 export const deleteUmbracoRelationsmanagerApiV1RelationById = (data: DeleteUmbracoRelationsmanagerApiV1RelationByIdData): CancelablePromise<DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse> => { return __request(OpenAPI, {
