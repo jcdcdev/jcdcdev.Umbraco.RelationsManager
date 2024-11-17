@@ -7,13 +7,7 @@ export type CreateRequestModel = {
     comment?: (string) | null;
 };
 
-export enum EventMessageTypeModel {
-    DEFAULT = 'Default',
-    INFO = 'Info',
-    ERROR = 'Error',
-    SUCCESS = 'Success',
-    WARNING = 'Warning'
-}
+export type EventMessageTypeModel = 'Default' | 'Info' | 'Error' | 'Success' | 'Warning';
 
 export type NotificationHeaderModel = {
     message: string;
