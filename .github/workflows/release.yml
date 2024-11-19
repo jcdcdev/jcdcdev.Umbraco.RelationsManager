@@ -18,7 +18,8 @@ jobs:
           project-path: src/jcdcdev.Umbraco.RelationsManager/jcdcdev.Umbraco.RelationsManager.csproj
           npm-working-dir: src/jcdcdev.Umbraco.RelationsManager.Client
           npm-enabled: true
-          umbraco-version: 14
+          umbraco-version: 15
+          dotnet-version: "9"
       - name: Release
         uses: jcdcdev/jcdcdev.Umbraco.GitHub.Release@main
         with:

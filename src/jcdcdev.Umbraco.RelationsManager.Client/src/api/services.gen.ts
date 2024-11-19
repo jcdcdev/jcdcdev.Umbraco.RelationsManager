@@ -12,14 +12,16 @@ import type { GetUmbracoRelationsmanagerApiV1TreeItemNullData, GetUmbracoRelatio
  * @returns unknown OK
  * @throws ApiError
  */
-export const getUmbracoRelationsmanagerApiV1TreeItemNull = (data: GetUmbracoRelationsmanagerApiV1TreeItemNullData = {}): CancelablePromise<GetUmbracoRelationsmanagerApiV1TreeItemNullResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/umbraco/relationsmanager/api/v1/tree/item/null',
-    query: {
-        skip: data.skip,
-        take: data.take
-    }
-}); };
+export const getUmbracoRelationsmanagerApiV1TreeItemNull = (data: GetUmbracoRelationsmanagerApiV1TreeItemNullData = {}): CancelablePromise<GetUmbracoRelationsmanagerApiV1TreeItemNullResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/umbraco/relationsmanager/api/v1/tree/item/null',
+        query: {
+            skip: data.skip,
+            take: data.take
+        }
+    });
+};
 
 /**
  * @param data The data for the request.
@@ -28,14 +30,16 @@ export const getUmbracoRelationsmanagerApiV1TreeItemNull = (data: GetUmbracoRela
  * @returns unknown OK
  * @throws ApiError
  */
-export const getUmbracoRelationsmanagerApiV1TreeRoot = (data: GetUmbracoRelationsmanagerApiV1TreeRootData = {}): CancelablePromise<GetUmbracoRelationsmanagerApiV1TreeRootResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/umbraco/relationsmanager/api/v1/tree/root',
-    query: {
-        skip: data.skip,
-        take: data.take
-    }
-}); };
+export const getUmbracoRelationsmanagerApiV1TreeRoot = (data: GetUmbracoRelationsmanagerApiV1TreeRootData = {}): CancelablePromise<GetUmbracoRelationsmanagerApiV1TreeRootResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/umbraco/relationsmanager/api/v1/tree/root',
+        query: {
+            skip: data.skip,
+            take: data.take
+        }
+    });
+};
 
 /**
  * @param data The data for the request.
@@ -44,16 +48,18 @@ export const getUmbracoRelationsmanagerApiV1TreeRoot = (data: GetUmbracoRelation
  * @returns string Created
  * @throws ApiError
  */
-export const postUmbracoRelationsmanagerApiV1Relation = (data: PostUmbracoRelationsmanagerApiV1RelationData = {}): CancelablePromise<PostUmbracoRelationsmanagerApiV1RelationResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/umbraco/relationsmanager/api/v1/relation',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    responseHeader: 'Umb-Notifications',
-    errors: {
-        400: 'Bad Request'
-    }
-}); };
+export const postUmbracoRelationsmanagerApiV1Relation = (data: PostUmbracoRelationsmanagerApiV1RelationData = {}): CancelablePromise<PostUmbracoRelationsmanagerApiV1RelationResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/umbraco/relationsmanager/api/v1/relation',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        responseHeader: 'Umb-Notifications',
+        errors: {
+            400: 'Bad Request'
+        }
+    });
+};
 
 /**
  * @param data The data for the request.
@@ -65,31 +71,36 @@ export const postUmbracoRelationsmanagerApiV1Relation = (data: PostUmbracoRelati
  * @returns unknown OK
  * @throws ApiError
  */
-export const getUmbracoRelationsmanagerApiV1RelationById = (data: GetUmbracoRelationsmanagerApiV1RelationByIdData): CancelablePromise<GetUmbracoRelationsmanagerApiV1RelationByIdResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/umbraco/relationsmanager/api/v1/relation/{id}',
-    path: {
-        id: data.id
-    },
-    query: {
-        page: data.page,
-        take: data.take,
-        sort: data.sort,
-        desc: data.desc
-    }
-}); };
+export const getUmbracoRelationsmanagerApiV1RelationById = (data: GetUmbracoRelationsmanagerApiV1RelationByIdData): CancelablePromise<GetUmbracoRelationsmanagerApiV1RelationByIdResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/umbraco/relationsmanager/api/v1/relation/{id}',
+        path: {
+            id: data.id
+        },
+        query: {
+            page: data.page,
+            take: data.take,
+            sort: data.sort,
+            desc: data.desc
+        }
+    });
+};
 
 /**
  * @param data The data for the request.
  * @param data.id
  * @returns string OK
+ * @returns string No Content
  * @throws ApiError
  */
-export const deleteUmbracoRelationsmanagerApiV1RelationById = (data: DeleteUmbracoRelationsmanagerApiV1RelationByIdData): CancelablePromise<DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/umbraco/relationsmanager/api/v1/relation/{id}',
-    path: {
-        id: data.id
-    },
-    responseHeader: 'Umb-Notifications'
-}); };
+export const deleteUmbracoRelationsmanagerApiV1RelationById = (data: DeleteUmbracoRelationsmanagerApiV1RelationByIdData): CancelablePromise<DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/umbraco/relationsmanager/api/v1/relation/{id}',
+        path: {
+            id: data.id
+        },
+        responseHeader: 'Umb-Notifications'
+    });
+};

@@ -105,10 +105,10 @@ export class CreateRelationEditor extends UmbElementMixin(LitElement) {
 	relationTypeId: string = '';
 
 	@state()
-	parentEntityType: string | undefined;
+	parentEntityType?: string;
 
 	@state()
-	childEntityType: string | undefined;
+	childEntityType?: string;
 
 	@state()
 	relationType: RelationTypeModel | null = null;
@@ -138,8 +138,8 @@ export class CreateRelationEditor extends UmbElementMixin(LitElement) {
 			return
 		}
 		this.relationType = relationType;
-		this.parentEntityType = relationType.parentEntityType;
-		this.childEntityType = relationType.childEntityType;
+		this.parentEntityType = relationType.parentEntityType ?? undefined;
+		this.childEntityType = relationType.childEntityType ?? undefined
 	}
 
 	private async _openParentPicker() {
@@ -157,7 +157,7 @@ export class CreateRelationEditor extends UmbElementMixin(LitElement) {
 		if (result) {
 			this.parent = result;
 		}
-		this.parentEntityType = relationType.parentEntityType
+		this.parentEntityType = relationType.parentEntityType ?? undefined
 	}
 
 	private async _openChildPicker() {
@@ -175,7 +175,7 @@ export class CreateRelationEditor extends UmbElementMixin(LitElement) {
 		if (result) {
 			this.child = result;
 		}
-		this.childEntityType = relationType.childEntityType
+		this.childEntityType = relationType.childEntityType ?? undefined
 	}
 
 	private async _openContentPicker(entityType: string): Promise<CreateRelationModel | undefined> {

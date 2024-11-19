@@ -1,22 +1,16 @@
 ﻿import {UMB_AUTH_CONTEXT} from "@umbraco-cms/backoffice/auth";
 import {OpenAPI} from "./api";
 import {UmbEntryPointOnInit} from "@umbraco-cms/backoffice/extension-api";
-import {
-	ManifestMenu,
-	ManifestMenuItemTreeKind,
-	ManifestRepository,
-	ManifestSection,
-	ManifestSectionSidebarApp,
-	ManifestTree,
-	ManifestTreeItem,
-	ManifestTreeStore,
-	ManifestWorkspace
-} from "@umbraco-cms/backoffice/extension-registry";
 import {RELATION_TYPE_TREE_ITEM_TYPE, RELATION_TYPE_TREE_ROOT_ITEM_TYPE} from "./tree/types.ts";
 import RelationTypeRepository from "./repository/relation-type.repository.ts";
 import {RelationTypeTreeStore} from "./tree/relation-type.tree-store.ts";
 import "./components/create-relation-editor.ts";
 import "./components/relations-manager-editor.ts";
+import {ManifestSection, ManifestSectionSidebarApp} from "@umbraco-cms/backoffice/section";
+import {ManifestWorkspace} from "@umbraco-cms/backoffice/workspace";
+import {ManifestRepository, ManifestTreeStore} from "@umbraco-cms/backoffice/extension-registry";
+import {ManifestMenuItemTreeKind, ManifestTree, ManifestTreeItem} from "@umbraco-cms/backoffice/tree";
+import {ManifestMenu} from "@umbraco-cms/backoffice/menu";
 
 const RELATION_TYPE_MANAGER_SECTION_ALIAS = 'RelationsManager.Section';
 const sectionManifest: ManifestSection =
@@ -109,7 +103,7 @@ const sectionSidebar: ManifestSectionSidebarApp = {
 		label: 'Relations Manager',
 		menu: RELATION_TYPE_TREE_MENU_ALIAS
 	},
-	conditions:[
+	conditions: [
 		{
 			alias: 'Umb.Condition.SectionAlias',
 			match: RELATION_TYPE_MANAGER_SECTION_ALIAS
