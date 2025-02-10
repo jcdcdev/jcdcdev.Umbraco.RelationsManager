@@ -105,10 +105,10 @@ export class CreateRelationEditor extends UmbElementMixin(LitElement) {
 	relationTypeId: string = '';
 
 	@state()
-	parentEntityType: string | undefined;
+	parentEntityType: string | null | undefined;
 
 	@state()
-	childEntityType: string | undefined;
+	childEntityType: string | null | undefined;
 
 	@state()
 	relationType: RelationTypeModel | null = null;
