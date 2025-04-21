@@ -15,12 +15,12 @@ public class RelationTypeTreeController(IRelationService relationService) : Rela
     [ApiExplorerSettings(GroupName = "Relation Type")]
     [MapToApiVersion("1.0")]
     [ProducesResponseType(typeof(PagedViewModel<RelationTypeTreeItemResponseModel>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<PagedViewModel<RelationTypeTreeItemResponseModel>>> GetRoot(int skip = 0, int take = 100)
+    public Task<ActionResult<PagedViewModel<RelationTypeTreeItemResponseModel>>> GetRoot(int skip = 0, int take = 100)
     {
         var items = GetTreeItems();
         var result = PagedViewModel(items, items.Count());
 
-        return base.Ok(result);
+        return Task.FromResult<ActionResult<PagedViewModel<RelationTypeTreeItemResponseModel>>>(base.Ok(result));
     }
 
     private IEnumerable<RelationTypeTreeItemResponseModel> GetTreeItems()
