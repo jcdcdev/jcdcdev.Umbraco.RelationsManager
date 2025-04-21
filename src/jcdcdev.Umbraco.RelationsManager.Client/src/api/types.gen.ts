@@ -9,6 +9,14 @@ export type CreateRequestModel = {
 
 export type EventMessageTypeModel = 'Default' | 'Info' | 'Error' | 'Success' | 'Warning';
 
+export const EventMessageTypeModel = {
+    DEFAULT: 'Default',
+    INFO: 'Info',
+    ERROR: 'Error',
+    SUCCESS: 'Success',
+    WARNING: 'Warning'
+} as const;
+
 export type NotificationHeaderModel = {
     message: string;
     category: string;
@@ -37,7 +45,7 @@ export type RelationModel = {
     childId: number;
     comment?: (string) | null;
     id: number;
-    createDate: string;
+    createDate: Date;
     relationType: number;
     childName?: (string) | null;
     parentName?: (string) | null;
