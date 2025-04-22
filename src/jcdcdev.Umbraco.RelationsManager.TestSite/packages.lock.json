@@ -3082,7 +3082,7 @@
           "Umbraco.Cms.Api.Common": "[14.0.0, 15.0.0)",
           "Umbraco.Cms.Api.Management": "[14.0.0, 15.0.0)",
           "Umbraco.Cms.Core": "[14.0.0, 15.0.0)",
-          "jcdcdev.Umbraco.Core": "[14.0.2, )"
+          "jcdcdev.Umbraco.Core": "[14.0.2, 15.0.0)"
         }
       }
     }
