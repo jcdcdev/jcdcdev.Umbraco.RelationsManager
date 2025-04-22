@@ -6,4 +6,6 @@ public static class Constants
     {
         public const string ApiName = "RelationsManager";
     }
+
+    public const string PackageName = "jcdcdev.Umbraco.RelationsManager";
 }
