@@ -1,22 +1,22 @@
 {
-  "name": "jcdcdev-umbraco-relationsmanager",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite build --watch --emptyOutDir",
-    "build": "tsc && vite build --emptyOutDir",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@lit/context": "^1.1.4",
-    "class-transformer": "^0.5.1",
-    "lit": "^3.2.1",
-    "reflect-metadata": "^0.2.2"
-  },
-  "devDependencies": {
-    "@umbraco-ui/uui": "^1.12.2",
-    "typescript": "^5.0.2",
-    "vite": "^6.2.4"
-  }
+	"name": "jcdcdev-umbraco-relationsmanager",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite build --watch --emptyOutDir",
+		"build": "tsc && vite build --emptyOutDir",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@lit/context": "^1.1.5",
+		"class-transformer": "^0.5.1",
+		"lit": "^3.3.0",
+		"reflect-metadata": "^0.2.2"
+	},
+	"devDependencies": {
+		"@umbraco-ui/uui": "^1.13.0",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.2"
+	}
 }
