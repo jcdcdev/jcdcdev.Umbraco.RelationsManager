@@ -1,42 +1,40 @@
-# jcdcdev.Umbraco.RelationsManager
+<!doctype html>
+<html lang="en" class="h-100">
 
-[![Documentation](https://img.shields.io/badge/Docs-Quickstart-394933?style=flat&logo=github)](https://github.com/jcdcdev/jcdcdev.Umbraco.RelationsManager/tree/main?tab=readme-ov-file#quick-start)
-[![Umbraco Marketplace](https://img.shields.io/badge/Umbraco-Marketplace-%233544B1?style=flat&logo=umbraco)](https://marketplace.umbraco.com/package/jcdcdev.umbraco.relationsmanager)
-[![GitHub License](https://img.shields.io/github/license/jcdcdev/jcdcdev.Umbraco.RelationsManager?color=8AB803&label=License&logo=github)](https://github.com/jcdcdev/jcdcdev.Umbraco.RelationsManager/blob/main/LICENSE)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/jcdcdev.Umbraco.RelationsManager?color=cc9900&label=Downloads&logo=nuget)](https://www.nuget.org/packages/jcdcdev.Umbraco.RelationsManager/)
-[![Umbraco UUI](https://img.shields.io/badge/Powered%20by-Umbraco%20UI-%233544B1?style=flat&logo=umbraco)](https://uui.umbraco.com/)
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>404</title>
+</head>
 
-Create and manage Relation Types directly from the Umbraco backoffice.
+<body class="h-100">
+    <div class="d-flex align-items-center justify-content-center h-100">
+        <div class="">
+            <h1>404 Not Found</h1>
+            <p> Sorry, the page you are looking for could not be found.</p>
+        </div>
+    </div>
 
-## Quick Start
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" type="dfa07b90bef3b5557fa8a94f-text/javascript"></script>
+    <script type="dfa07b90bef3b5557fa8a94f-text/javascript">
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-1. Install the [NuGet package](https://www.nuget.org/packages/jcdcdev.Umbraco.RelationsManager) in your Umbraco CMS website project.
-2. Configure user group permissions
-   1. Add the `Relations Manager` section
-   ![A screenshot of the BackOffice user groups](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Umbraco.RelationsManager/main/docs/screenshots/permissions.png)
-3. Go to the backoffice
-4. Navigate to the `Relations Manager` section
-![A screenshot of the Relations Manager section](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Umbraco.RelationsManager/main/docs/screenshots/welcome.png)
+        if (darkModeMediaQuery.matches) {
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+        }
 
-## Configuration
+        darkModeMediaQuery.addEventListener('change', (event) => {
+            if (event.matches) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-bs-theme', 'light');
+            }
+        });
+    </script>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="dfa07b90bef3b5557fa8a94f-|49" defer></script></body>
 
-_There are currently no configuration options for this package._
-
-## Extending
-
-_There are currently no extension points for this package._
-
-## Contributing
-
-Contributions to this package are most welcome! Please read the [Contributing Guidelines](CONTRIBUTING.md).
-
-## Acknowledgments (thanks!)
-
-- LottePitcher - [opinionated-package-starter](https://github.com/LottePitcher/opinionated-package-starter)
-- jcdcdev - [jcdcdev.Umbraco.PackageTemplate](https://github.com/jcdcdev/jcdcdev.Umbraco.PackageTemplate)
-
-## Notes
-
-This project uses the new (awesome) [Umbraco UI (UUI)](https://uui.umbraco.com/) which is still under active development.
-    
-There may be _some_ visual inconsistencies between the current backoffice and the new UUI. 
+</html>
