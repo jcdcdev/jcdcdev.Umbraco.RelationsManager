@@ -7,6 +7,11 @@
 
 
 
+> [!IMPORTANT]
+> Version 10 will only receive security updates and no new features.
+
+> Please review the [security policy](https://github.com/jcdcdev/jcdcdev.Umbraco.RelationsManager?tab=security-ov-file#supported-versions) for more information.
+
 ## Quick Start
 
 1. Install the [NuGet package](https://www.nuget.org/packages/jcdcdev.Umbraco.RelationsManager) in your Umbraco CMS website project.
