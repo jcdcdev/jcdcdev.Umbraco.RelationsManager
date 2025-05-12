@@ -1,6 +1,6 @@
 ﻿import {css, html, LitElement, TemplateResult} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
-import {GetUmbracoRelationsmanagerApiV1RelationByIdData, PostUmbracoRelationsmanagerApiV1RelationData, RelationTypeModel} from "../api";
+import {CreateRequestModel, RelationTypeModel} from "../api";
 import {RelationsManagerContext} from "../context/relations.context.ts";
 import {UmbElementMixin} from "@umbraco-cms/backoffice/element-api";
 import {UUITextStyles} from "@umbraco-cms/backoffice/external/uui";
@@ -128,11 +128,7 @@ export class CreateRelationEditor extends UmbElementMixin(LitElement) {
 	}
 
 	async getData() {
-		const request: GetUmbracoRelationsmanagerApiV1RelationByIdData = {
-			id: this.relationTypeId,
-		};
-
-		const results = await this.#context.get(request);
+		const results = await this.#context.get(this.relationTypeId);
 		const relationType = results.data;
 		if (!relationType) {
 			return
@@ -426,14 +422,14 @@ export class CreateRelationEditor extends UmbElementMixin(LitElement) {
 
 		this.loading = true;
 		await this.updateComplete
-		const request: PostUmbracoRelationsmanagerApiV1RelationData = {
-			requestBody: {
-				comment: this.comment,
-				parentId: this.parent!.id,
-				childId: this.child!.id,
-				relationType: this.relationTypeId
-			}
+
+		const request: CreateRequestModel = {
+			comment: this.comment,
+			parentId: this.parent!.id,
+			childId: this.child!.id,
+			relationType: this.relationTypeId
 		};
+
 		const response = await this.#context.create(request)
 		if (response.error) {
 			// @ts-ignore

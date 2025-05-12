@@ -1,5 +1,5 @@
 ﻿import {UMB_AUTH_CONTEXT} from "@umbraco-cms/backoffice/auth";
-import {OpenAPI} from "./api";
+import {client} from './api';
 import {UmbEntryPointOnInit} from "@umbraco-cms/backoffice/extension-api";
 import {RELATION_TYPE_TREE_ITEM_TYPE, RELATION_TYPE_TREE_ROOT_ITEM_TYPE} from "./tree/types.ts";
 import RelationTypeRepository from "./repository/relation-type.repository.ts";
@@ -118,9 +118,22 @@ export const onInit: UmbEntryPointOnInit = (_host, extensionRegistry) => {
 	]);
 
 	_host.consumeContext(UMB_AUTH_CONTEXT, (_auth) => {
-		const umbOpenApi = _auth.getOpenApiConfiguration();
-		OpenAPI.TOKEN = umbOpenApi.token;
-		OpenAPI.BASE = umbOpenApi.base;
-		OpenAPI.WITH_CREDENTIALS = umbOpenApi.withCredentials;
+		if (!_auth) {
+			console.error('No auth context found');
+			return;
+		}
+
+		const config = _auth.getOpenApiConfiguration();
+		client.setConfig({
+			auth: config.token,
+			baseUrl: config.base,
+			credentials: config.credentials,
+		});
+
+		client.interceptors.request.use(async (request, _options) => {
+			const token = await _auth.getLatestToken();
+			request.headers.set('Authorization', `Bearer ${token}`);
+			return request;
+		});
 	});
 };

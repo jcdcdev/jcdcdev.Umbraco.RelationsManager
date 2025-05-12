@@ -1,14 +1,19 @@
-﻿using jcdcdev.Umbraco.RelationsManager.Models;
+﻿using Asp.Versioning;
+using jcdcdev.Umbraco.RelationsManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Models.Entities;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Extensions;
 
-namespace jcdcdev.Umbraco.RelationsManager.Controllers;
+namespace jcdcdev.Umbraco.RelationsManager.Web.Controllers;
 
-[ApiExplorerSettings(GroupName = "Relation")]
-public class RelationsManagerApiController(IRelationService relationService, ILogger<RelationsManagerApiController> logger) : RelationsManagerApiControllerBase(relationService)
+[ApiExplorerSettings(GroupName = Constants.Api.GroupName)]
+[ApiVersion("1.0")]
+public class RelationsManagerApiController(
+    IRelationService relationService,
+    ILogger<RelationsManagerApiController> logger)
+    : RelationsManagerApiControllerBase(relationService)
 {
     [HttpGet("relation/{id:guid}", Name = "GetRelation")]
     [Produces<RelationTypeModel>]

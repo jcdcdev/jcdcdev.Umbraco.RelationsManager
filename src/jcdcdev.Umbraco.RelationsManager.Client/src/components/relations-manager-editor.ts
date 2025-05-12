@@ -4,7 +4,7 @@ import {TableColumn, TableItem} from './uui-paginated-table';
 import {UUITextStyles} from '@umbraco-cms/backoffice/external/uui';
 import {UmbElementMixin} from '@umbraco-cms/backoffice/element-api';
 import {RelationsManagerContext} from "../context/relations.context.ts";
-import {DeleteUmbracoRelationsmanagerApiV1RelationByIdData, GetUmbracoRelationsmanagerApiV1RelationByIdData, GetUmbracoRelationsmanagerApiV1RelationByIdResponse} from "../api";
+import {GetUmbracoRelationsmanagerApiV1RelationByIdResponse} from "../api";
 
 @customElement('relations-manager-editor')
 export class RelationsManagerEditor extends UmbElementMixin(LitElement) {
@@ -88,16 +88,8 @@ export class RelationsManagerEditor extends UmbElementMixin(LitElement) {
 		if (this.relationTypeId === null) {
 			return
 		}
-		const request: GetUmbracoRelationsmanagerApiV1RelationByIdData = {
-			id: this.relationTypeId,
-			page: this.currentPage,
-			take: this.pageSize,
-			sort: this.sortColumn,
-			desc: this.sortDesc
-		};
 
-
-		const results = await this.#context.get(request);
+		const results = await this.#context.get(this.relationTypeId, this.currentPage, this.pageSize, this.sortColumn, this.sortDesc);
 		this.relationType = results.data ?? null;
 	}
 
@@ -116,7 +108,7 @@ export class RelationsManagerEditor extends UmbElementMixin(LitElement) {
 				return new Date(value).toLocaleString();
 			}
 		}
-		
+
 		const parwnt = new TableColumn('Parent Name', 'parentName');
 		const child = new TableColumn('Child Name', 'childName');
 
@@ -231,10 +223,7 @@ export class RelationsManagerEditor extends UmbElementMixin(LitElement) {
 		let success = true;
 		for (let i = 0; i < this.selection.length; i++) {
 			const id = this.selection[i];
-			const request: DeleteUmbracoRelationsmanagerApiV1RelationByIdData = {
-				id: parseInt(id)
-			};
-			const result = await this.#context.delete(request);
+			const result = await this.#context.delete(parseInt(id));
 			if (result.error) {
 				success = false;
 			}
