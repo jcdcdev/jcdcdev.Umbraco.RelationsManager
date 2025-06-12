@@ -37,7 +37,7 @@ export class RelationsManagerWorkspaceElement extends UmbElementMixin(LitElement
 		if (!this.relationTypeId) {
 			return;
 		}
-		const relationType = await this.#context.get({id: this.relationTypeId});
+		const relationType = await this.#context.get(this.relationTypeId);
 		if (!relationType.data) {
 			return;
 		}

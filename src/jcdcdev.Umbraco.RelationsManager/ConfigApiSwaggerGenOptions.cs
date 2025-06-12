@@ -13,9 +13,9 @@ public class ConfigApiSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions>
             Constants.Api.ApiName,
             new OpenApiInfo
             {
-                Title = "Relations Manager Api",
+                Title = Constants.Api.Title,
                 Version = "Latest",
-                Description = "API for Relations Manager"
+                Description = Constants.Api.Description
             });
     }
 }

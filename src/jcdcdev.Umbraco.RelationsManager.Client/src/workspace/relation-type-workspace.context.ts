@@ -4,12 +4,13 @@ import {UmbControllerHost} from "@umbraco-cms/backoffice/controller-api";
 import {UmbPathPattern} from "@umbraco-cms/backoffice/router";
 import {UmbContextBase} from "@umbraco-cms/backoffice/class-api";
 import {RelationsManagerWorkspaceElement} from "./relations-manager-workspace.element.ts";
+import {UmbContextToken} from "@umbraco-cms/backoffice/context-api";
 
 const RELATION_TYPE_MANAGER_CONTEXT_TOKEN = 'RelationsManager.Workspace';
 const EDIT_RELATION_TYPE_WORKSPACE_PATH_PATTERN = new UmbPathPattern('/edit/:id');
 
 export class RelationTypeManagerWorkspaceContext
-	extends UmbContextBase<RelationTypeManagerWorkspaceContext>
+	extends UmbContextBase
 	implements UmbWorkspaceContext, UmbRoutableWorkspaceContext {
 	readonly routes: UmbWorkspaceRouteManager;
 
@@ -33,9 +34,11 @@ export class RelationTypeManagerWorkspaceContext
 	}
 
 	getEntityType = () => RELATION_TYPE_TREE_ITEM_TYPE;
-	readonly workspaceAlias = RELATION_TYPE_MANAGER_WORKSPACE_CONTEXT;
+	readonly workspaceAlias = 'relation-type-manager-workspace';
 }
 
-export {RelationTypeManagerWorkspaceContext as api};
-
-export const RELATION_TYPE_MANAGER_WORKSPACE_CONTEXT = 'relation-type-manager-workspace';
+export const api = RelationTypeManagerWorkspaceContext;
+export const UMB_APP_CONTEXT = new UmbContextToken<RelationTypeManagerWorkspaceContext>(
+	"UmbWorkspaceContext",
+	"relation-type-manager-workspace"
+);

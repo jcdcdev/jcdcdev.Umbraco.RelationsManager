@@ -1,14 +1,10 @@
 import {UmbControllerHost} from "@umbraco-cms/backoffice/controller-api";
 import {UmbDataSourceResponse} from "@umbraco-cms/backoffice/repository";
-import {tryExecuteAndNotify} from "@umbraco-cms/backoffice/resources";
+import {tryExecute} from "@umbraco-cms/backoffice/resources";
 import {
-	DeleteUmbracoRelationsmanagerApiV1RelationByIdData, DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse,
-	GetUmbracoRelationsmanagerApiV1RelationByIdData,
+	DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse,
 	GetUmbracoRelationsmanagerApiV1RelationByIdResponse,
-	postUmbracoRelationsmanagerApiV1Relation,
-	deleteUmbracoRelationsmanagerApiV1RelationById,
-	getUmbracoRelationsmanagerApiV1RelationById,
-	PostUmbracoRelationsmanagerApiV1RelationData, PostUmbracoRelationsmanagerApiV1RelationResponse
+	PostUmbracoRelationsmanagerApiV1RelationResponse, CreateRequestModel, RelationsManagerService, RelationService
 } from "../api";
 
 export class RelationsManagerDataSource implements IRelationsManagerDataSource {
@@ -19,24 +15,39 @@ export class RelationsManagerDataSource implements IRelationsManagerDataSource {
 		this.#host = host;
 	}
 
-	async create(request: PostUmbracoRelationsmanagerApiV1RelationData): Promise<UmbDataSourceResponse<PostUmbracoRelationsmanagerApiV1RelationResponse>> {
-		return await tryExecuteAndNotify(this.#host, postUmbracoRelationsmanagerApiV1Relation(request))
+	async create(request: CreateRequestModel): Promise<UmbDataSourceResponse<PostUmbracoRelationsmanagerApiV1RelationResponse>> {
+		return await tryExecute(this.#host, RelationService.postUmbracoRelationsmanagerApiV1Relation({body: request}))
 	}
 
-	async delete(request: DeleteUmbracoRelationsmanagerApiV1RelationByIdData): Promise<UmbDataSourceResponse<DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse>> {
-		return await tryExecuteAndNotify(this.#host, deleteUmbracoRelationsmanagerApiV1RelationById(request))
+	async delete(id: number): Promise<UmbDataSourceResponse<DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse>> {
+		return await tryExecute(this.#host, RelationService.deleteUmbracoRelationsmanagerApiV1RelationById({
+			path: {
+				id: id,
+			}
+		}))
 	}
 
-	async get(request: GetUmbracoRelationsmanagerApiV1RelationByIdData): Promise<UmbDataSourceResponse<GetUmbracoRelationsmanagerApiV1RelationByIdResponse>> {
-		return await tryExecuteAndNotify(this.#host, getUmbracoRelationsmanagerApiV1RelationById(request))
+	async get(id: string, page?: number, take?: number, sort?: string, desc?: boolean): Promise<UmbDataSourceResponse<GetUmbracoRelationsmanagerApiV1RelationByIdResponse>> {
+		const options = {
+			path: {
+				id: id,
+			},
+			query: {
+				page: page,
+				take: take,
+				sort: sort,
+				desc: desc,
+			}
+		};
+		return await tryExecute(this.#host, RelationsManagerService.getUmbracoRelationsmanagerApiV1RelationById(options))
 	}
 }
 
 export interface IRelationsManagerDataSource {
-	get(request: GetUmbracoRelationsmanagerApiV1RelationByIdData): Promise<UmbDataSourceResponse<GetUmbracoRelationsmanagerApiV1RelationByIdResponse>>;
+	get(id: string, page?: number, take?: number, sort?: string, desc?: boolean): Promise<UmbDataSourceResponse<GetUmbracoRelationsmanagerApiV1RelationByIdResponse>>;
 
-	delete(request: DeleteUmbracoRelationsmanagerApiV1RelationByIdData): Promise<UmbDataSourceResponse<DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse>>;
+	delete(id: number): Promise<UmbDataSourceResponse<DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse>>;
 
-	create(request: PostUmbracoRelationsmanagerApiV1RelationData): Promise<UmbDataSourceResponse<PostUmbracoRelationsmanagerApiV1RelationResponse>>;
+	create(request: CreateRequestModel): Promise<UmbDataSourceResponse<PostUmbracoRelationsmanagerApiV1RelationResponse>>;
 }
 

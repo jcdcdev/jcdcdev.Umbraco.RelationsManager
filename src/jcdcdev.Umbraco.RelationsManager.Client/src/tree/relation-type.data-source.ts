@@ -2,7 +2,8 @@
 import {RelationTypeTreeItemResponseModel} from "../api";
 import {UmbControllerHost} from "@umbraco-cms/backoffice/controller-api";
 import {RelationTypeDataSource} from "../repository/relation-type.data-source.ts";
-import {RELATION_TYPE_TREE_ITEM_TYPE, RELATION_TYPE_TREE_ROOT_ITEM_TYPE, RelationTypePagedModel, RelationTypeTreeItemModel} from "./types.ts";
+import {RELATION_TYPE_TREE_ITEM_TYPE, RELATION_TYPE_TREE_ROOT_ITEM_TYPE, RelationTypeTreeItemModel} from "./types.ts";
+import {UmbDataSourceResponse} from "@umbraco-cms/backoffice/repository";
 
 export class RelationTypeTreeServerDataSource extends UmbTreeServerDataSourceBase<RelationTypeTreeItemResponseModel, RelationTypeTreeItemModel> {
 
@@ -10,15 +11,11 @@ export class RelationTypeTreeServerDataSource extends UmbTreeServerDataSourceBas
 		const resource = new RelationTypeDataSource(host);
 
 		const getRootItems = async (args: UmbTreeRootItemsRequestArgs) => {
-			const results = await resource.getRoot(args);
-			const items = results.data!.items;
-			return new RelationTypePagedModel(items.length, items);
+			return await resource.getRoot(args);
 		};
 
 		const getChildrenOf = async (args: UmbTreeChildrenOfRequestArgs) => {
-			const results = await resource.getChildren(args.skip, args.take);
-			const items = results.data!.items;
-			return new RelationTypePagedModel(items.length, items);
+			return await resource.getChildren(args.skip, args.take);
 		};
 
 		const mapper = (item: RelationTypeTreeItemResponseModel): RelationTypeTreeItemModel => {
@@ -36,7 +33,7 @@ export class RelationTypeTreeServerDataSource extends UmbTreeServerDataSourceBas
 			};
 		};
 
-		function getAncestorsOf(args: UmbTreeAncestorsOfRequestArgs): Promise<Array<RelationTypeTreeItemResponseModel>> {
+		function getAncestorsOf(args: UmbTreeAncestorsOfRequestArgs): Promise<UmbDataSourceResponse<Array<RelationTypeTreeItemResponseModel>>> {
 			console.log('getAncestorsOf', args);
 			throw new Error('Method not implemented.');
 		}

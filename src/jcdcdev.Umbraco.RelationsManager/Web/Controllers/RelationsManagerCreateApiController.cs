@@ -5,11 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Services;
 
-namespace jcdcdev.Umbraco.RelationsManager.Controllers;
+namespace jcdcdev.Umbraco.RelationsManager.Web.Controllers;
 
 [ApiExplorerSettings(GroupName = "Relation")]
 [ApiVersion("1.0")]
-public class RelationsManagerCreateApiController(IRelationService relationService, IEntityService entityService) : RelationsManagerApiControllerBase(relationService)
+public class RelationsManagerCreateApiController(
+    IRelationService relationService,
+    IEntityService entityService)
+    : RelationsManagerApiControllerBase(relationService)
 {
     [HttpPost("relation", Name = "CreateRelation")]
     [Produces<int>]

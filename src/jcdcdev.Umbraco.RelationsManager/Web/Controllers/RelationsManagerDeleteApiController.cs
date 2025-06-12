@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Services;
 
-namespace jcdcdev.Umbraco.RelationsManager.Controllers;
+namespace jcdcdev.Umbraco.RelationsManager.Web.Controllers;
 
 [ApiExplorerSettings(GroupName = "Relation")]
 [ApiVersion("1.0")]

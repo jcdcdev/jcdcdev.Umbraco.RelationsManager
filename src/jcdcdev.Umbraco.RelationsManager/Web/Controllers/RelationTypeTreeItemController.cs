@@ -1,10 +1,11 @@
 ﻿using Asp.Versioning;
+using jcdcdev.Umbraco.RelationsManager.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Api.Common.ViewModels.Pagination;
 using Umbraco.Cms.Core.Services;
 
-namespace jcdcdev.Umbraco.RelationsManager.Controllers;
+namespace jcdcdev.Umbraco.RelationsManager.Web.Controllers;
 
 [ApiVersion("1.0")]
 [RelationsManagerVersionedRoute("tree")]
