@@ -1,10 +1,10 @@
-import {UmbControllerHost} from "@umbraco-cms/backoffice/controller-api";
-import {UmbDataSourceResponse} from "@umbraco-cms/backoffice/repository";
-import {tryExecute} from "@umbraco-cms/backoffice/resources";
+import { UmbControllerHost } from "@umbraco-cms/backoffice/controller-api";
+import { UmbDataSourceResponse } from "@umbraco-cms/backoffice/repository";
+import { tryExecute } from "@umbraco-cms/backoffice/resources";
 import {
 	DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse,
 	GetUmbracoRelationsmanagerApiV1RelationByIdResponse,
-	PostUmbracoRelationsmanagerApiV1RelationResponse, CreateRequestModel, RelationsManagerService, RelationService
+	PostUmbracoRelationsmanagerApiV1RelationResponse, CreateRequestModel, RelationsManager, Relation
 } from "../api";
 
 export class RelationsManagerDataSource implements IRelationsManagerDataSource {
@@ -16,11 +16,11 @@ export class RelationsManagerDataSource implements IRelationsManagerDataSource {
 	}
 
 	async create(request: CreateRequestModel): Promise<UmbDataSourceResponse<PostUmbracoRelationsmanagerApiV1RelationResponse>> {
-		return await tryExecute(this.#host, RelationService.postUmbracoRelationsmanagerApiV1Relation({body: request}))
+		return await tryExecute(this.#host, Relation.postUmbracoRelationsmanagerApiV1Relation({ body: request }))
 	}
 
 	async delete(id: number): Promise<UmbDataSourceResponse<DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse>> {
-		return await tryExecute(this.#host, RelationService.deleteUmbracoRelationsmanagerApiV1RelationById({
+		return await tryExecute(this.#host, Relation.deleteUmbracoRelationsmanagerApiV1RelationById({
 			path: {
 				id: id,
 			}
@@ -39,7 +39,7 @@ export class RelationsManagerDataSource implements IRelationsManagerDataSource {
 				desc: desc,
 			}
 		};
-		return await tryExecute(this.#host, RelationsManagerService.getUmbracoRelationsmanagerApiV1RelationById(options))
+		return await tryExecute(this.#host, RelationsManager.getUmbracoRelationsmanagerApiV1RelationById(options))
 	}
 }
 
