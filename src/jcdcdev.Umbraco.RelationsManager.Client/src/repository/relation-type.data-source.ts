@@ -1,8 +1,8 @@
-import {UmbControllerHost} from "@umbraco-cms/backoffice/controller-api";
-import {UmbDataSourceResponse} from "@umbraco-cms/backoffice/repository";
-import {tryExecute} from "@umbraco-cms/backoffice/resources";
-import {GetUmbracoRelationsmanagerApiV1TreeRootResponse, RelationTypeService} from "../api";
-import {UmbTreeRootItemsRequestArgs} from "@umbraco-cms/backoffice/tree";
+import { UmbControllerHost } from "@umbraco-cms/backoffice/controller-api";
+import { UmbDataSourceResponse } from "@umbraco-cms/backoffice/repository";
+import { tryExecute } from "@umbraco-cms/backoffice/resources";
+import { GetUmbracoRelationsmanagerApiV1TreeRootResponse, RelationType } from "../api";
+import { UmbTreeRootItemsRequestArgs } from "@umbraco-cms/backoffice/tree";
 
 export class RelationTypeDataSource {
 
@@ -19,7 +19,7 @@ export class RelationTypeDataSource {
 				take: args.take,
 			}
 		}
-		return await tryExecute(this.#host, RelationTypeService.getUmbracoRelationsmanagerApiV1TreeRoot(options));
+		return await tryExecute(this.#host, RelationType.getUmbracoRelationsmanagerApiV1TreeRoot(options));
 	}
 
 
@@ -30,6 +30,6 @@ export class RelationTypeDataSource {
 				take: take,
 			}
 		}
-		return await tryExecute(this.#host, RelationTypeService.getUmbracoRelationsmanagerApiV1TreeItemNull(options));
+		return await tryExecute(this.#host, RelationType.getUmbracoRelationsmanagerApiV1TreeItemNull(options));
 	}
 }
