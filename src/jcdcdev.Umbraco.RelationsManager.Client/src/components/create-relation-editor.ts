@@ -242,7 +242,8 @@ export class CreateRelationEditor extends UmbElementMixin(LitElement) {
 			return undefined;
 		}
 		const item = result.data[0];
-		return new CreateRelationModel(item.unique, item.name, item.documentType.unique, item.documentType.icon);
+		const name = item.variants[0].name;
+		return new CreateRelationModel(item.unique, name, item.documentType.unique, item.documentType.icon);
 	}
 
 	render() {
