@@ -8,7 +8,6 @@
 
 Create and manage Relation Types directly from the Umbraco backoffice.
 
-
 ## Quick Start
 
 1. Install the [NuGet package](https://www.nuget.org/packages/jcdcdev.Umbraco.RelationsManager) in your Umbraco CMS website project.
@@ -18,8 +17,6 @@ Create and manage Relation Types directly from the Umbraco backoffice.
 3. Go to the backoffice
 4. Navigate to the `Relations Manager` section
 ![A screenshot of the Relations Manager section](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Umbraco.RelationsManager/main/docs/screenshots/welcome.png)
-
-
 
 ## Contributing
 
