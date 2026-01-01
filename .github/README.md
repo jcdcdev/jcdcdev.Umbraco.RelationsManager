@@ -13,9 +13,17 @@ Create and manage Relation Types directly from the Umbraco backoffice.
 
 > Please review the [security policy](https://github.com/jcdcdev/jcdcdev.Umbraco.RelationsManager?tab=security-ov-file#supported-versions) for more information.
 
+## Installation
+
+### Install Package
+
+```csharp
+dotnet add package jcdcdev.Umbraco.RelationsManager 
+```
+
 ## Quick Start
 
-1. Install the [NuGet package](https://www.nuget.org/packages/jcdcdev.Umbraco.RelationsManager) in your Umbraco CMS website project.
+1. Install the NuGet package
 2. Configure user group permissions
    1. Add the `Relations Manager` section
    ![A screenshot of the BackOffice user groups](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Umbraco.RelationsManager/main/docs/screenshots/permissions.png)
