@@ -12,7 +12,7 @@ Create and manage Relation Types directly from the Umbraco backoffice.
 
 ### Install Package
 
-```csharp
+```powershell
 dotnet add package jcdcdev.Umbraco.RelationsManager 
 ```
 
