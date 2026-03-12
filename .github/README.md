@@ -9,6 +9,11 @@
 
 Create and manage Relation Types directly from the Umbraco backoffice.
 
+> [!IMPORTANT]
+> Version 16 will only receive security updates and no new features.
+
+> Please review the [security policy](https://github.com/jcdcdev/jcdcdev.Umbraco.RelationsManager?tab=security-ov-file#supported-versions) for more information.
+
 ## Installation
 
 ### Install Package
