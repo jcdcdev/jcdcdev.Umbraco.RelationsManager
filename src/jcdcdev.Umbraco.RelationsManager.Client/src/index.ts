@@ -1,14 +1,11 @@
-﻿import {UMB_AUTH_CONTEXT} from "@umbraco-cms/backoffice/auth";
-import {client} from './api';
-import {UmbEntryPointOnInit} from "@umbraco-cms/backoffice/extension-api";
+﻿import {UmbEntryPointOnInit} from "@umbraco-cms/backoffice/extension-api";
 import {RELATION_TYPE_TREE_ITEM_TYPE, RELATION_TYPE_TREE_ROOT_ITEM_TYPE} from "./tree/types.ts";
 import RelationTypeRepository from "./repository/relation-type.repository.ts";
-import {RelationTypeTreeStore} from "./tree/relation-type.tree-store.ts";
 import "./components/create-relation-editor.ts";
 import "./components/relations-manager-editor.ts";
 import {ManifestSection, ManifestSectionSidebarApp} from "@umbraco-cms/backoffice/section";
 import {ManifestWorkspace} from "@umbraco-cms/backoffice/workspace";
-import {ManifestRepository, ManifestTreeStore} from "@umbraco-cms/backoffice/extension-registry";
+import {ManifestRepository} from "@umbraco-cms/backoffice/extension-registry";
 import {ManifestMenuItemTreeKind, ManifestTree, ManifestTreeItem} from "@umbraco-cms/backoffice/tree";
 import {ManifestMenu} from "@umbraco-cms/backoffice/menu";
 
@@ -44,13 +41,6 @@ const treeRepository: ManifestRepository = {
 	api: RelationTypeRepository,
 };
 
-const RELATION_TYPE_TREE_STORE_ALIAS = 'RelationsManager.TreeStore';
-const treeStore: ManifestTreeStore = {
-	type: 'treeStore',
-	alias: RELATION_TYPE_TREE_STORE_ALIAS,
-	name: 'Relation Type tree Store',
-	api: RelationTypeTreeStore
-};
 const RELATION_TYPE_TREE_ALIAS = 'RelationsManager.Tree';
 const tree: ManifestTree =
 	{
@@ -111,29 +101,9 @@ const sectionSidebar: ManifestSectionSidebarApp = {
 	]
 };
 
-export const manifests = [treeRepository, treeStore, tree, treeItem, menuItem, sectionManifest, menu, sectionSidebar, workspace];
+export const manifests = [treeRepository, tree, treeItem, menuItem, sectionManifest, menu, sectionSidebar, workspace];
 export const onInit: UmbEntryPointOnInit = (_host, extensionRegistry) => {
 	extensionRegistry.registerMany([
 		...manifests
 	]);
-
-	_host.consumeContext(UMB_AUTH_CONTEXT, (_auth) => {
-		if (!_auth) {
-			console.error('No auth context found');
-			return;
-		}
-
-		const config = _auth.getOpenApiConfiguration();
-		client.setConfig({
-			auth: config.token,
-			baseUrl: config.base,
-			credentials: config.credentials,
-		});
-
-		client.interceptors.request.use(async (request, _options) => {
-			const token = await _auth.getLatestToken();
-			request.headers.set('Authorization', `Bearer ${token}`);
-			return request;
-		});
-	});
 };

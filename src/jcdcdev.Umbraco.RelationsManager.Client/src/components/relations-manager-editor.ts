@@ -4,7 +4,7 @@ import {TableColumn, TableItem} from './uui-paginated-table';
 import {UUITextStyles} from '@umbraco-cms/backoffice/external/uui';
 import {UmbElementMixin} from '@umbraco-cms/backoffice/element-api';
 import {RelationsManagerContext} from "../context/relations.context.ts";
-import {GetUmbracoRelationsmanagerApiV1RelationByIdResponse} from "../api";
+import {RelationTypeModel} from "../api";
 
 @customElement('relations-manager-editor')
 export class RelationsManagerEditor extends UmbElementMixin(LitElement) {
@@ -18,7 +18,7 @@ export class RelationsManagerEditor extends UmbElementMixin(LitElement) {
 	@state()
 	selection: string[] = [];
 	@state()
-	relationType: GetUmbracoRelationsmanagerApiV1RelationByIdResponse | null = null;
+	relationType: RelationTypeModel | null = null;
 	@property({type: String})
 	relationTypeId: string | null = null;
 	@state()
@@ -50,11 +50,11 @@ export class RelationsManagerEditor extends UmbElementMixin(LitElement) {
 		const id = relation.childId;
 		const type = relation.childEntityType ?? "document";
 
-		return this._renderCell(id, value, type);
+		return this._renderCell(id.toString(), value, type);
 	}
 
 	// @ts-ignore
-	private _renderCell(id: number, value: string, editorType: string) {
+	private _renderCell(id: string, value: string, editorType: string) {
 		const icon = editorType === 'media' ? 'picture' : editorType === 'document' ? 'document' : 'lock';
 		return html`
 			<uui-button look="text">
@@ -73,7 +73,7 @@ export class RelationsManagerEditor extends UmbElementMixin(LitElement) {
 		}
 		const id = relation.parentId;
 		const type = relation.parentEntityType ?? "document";
-		return this._renderCell(id, value, type);
+		return this._renderCell(id.toString(), value, type);
 	}
 
 
@@ -124,9 +124,9 @@ export class RelationsManagerEditor extends UmbElementMixin(LitElement) {
 		const rows = relationType.relations.items.map((relation: any) => {
 			return new TableItem(relation.id.toString(), relation);
 		});
-
-		const pages = relationType.relations.totalPages === 0 ? 1 : relationType.relations.totalPages;
-		const currentPage = relationType.relations.currentPage;
+		const totalPages = parseInt(relationType.relations.totalPages.toString());
+		const pages = totalPages === 0 ? 1 : totalPages;
+		const currentPage = parseInt(relationType.relations.currentPage.toString());
 
 		let notification = null;
 		if (this.errorMessage !== '') {

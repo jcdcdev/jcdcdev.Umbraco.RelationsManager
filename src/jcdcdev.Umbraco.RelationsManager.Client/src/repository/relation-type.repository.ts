@@ -3,12 +3,11 @@ import { RELATION_TYPE_TREE_ROOT_ITEM_TYPE, RelationTypeTreeItemModel, RelationT
 import { UmbControllerHost } from "@umbraco-cms/backoffice/controller-api";
 import { RelationTypeTreeServerDataSource } from "../tree/relation-type.data-source.ts";
 import { UmbApi } from "@umbraco-cms/backoffice/extension-api";
-import { RELATION_TYPE_TREE_STORE_CONTEXT } from "../tree/relation-type.tree-store.ts";
 import type { UmbError } from '@umbraco-cms/backoffice/resources';
 
 export class RelationTypeRepository extends UmbTreeRepositoryBase<RelationTypeTreeItemModel, RelationTypeTreeRootModel> implements UmbApi {
 	constructor(host: UmbControllerHost) {
-		super(host, RelationTypeTreeServerDataSource, RELATION_TYPE_TREE_STORE_CONTEXT);
+		super(host, RelationTypeTreeServerDataSource);
 	}
 
 	async requestTreeRoot(): Promise<{
