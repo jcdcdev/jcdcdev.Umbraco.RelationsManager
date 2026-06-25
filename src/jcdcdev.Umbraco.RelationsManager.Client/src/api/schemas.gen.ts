@@ -59,18 +59,15 @@ export const PagedRelationTypeTreeItemResponseModelSchema = {
                 'integer',
                 'string'
             ],
-            description: 'Gets or sets the total number of items available.',
             format: 'int64'
         },
         items: {
             type: 'array',
             items: {
                 $ref: '#/components/schemas/RelationTypeTreeItemResponseModel'
-            },
-            description: 'Gets or sets the items in the current page.'
+            }
         }
-    },
-    description: 'Represents a paged collection of items with total count.'
+    }
 } as const;
 
 export const PaginationModelOfRelationModelSchema = {

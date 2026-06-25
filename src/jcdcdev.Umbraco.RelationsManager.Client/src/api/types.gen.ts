@@ -15,17 +15,8 @@ export type CreateRequestModel = {
     comment?: null | string;
 };
 
-/**
- * Represents a paged collection of items with total count.
- */
 export type PagedRelationTypeTreeItemResponseModel = {
-    /**
-     * Gets or sets the total number of items available.
-     */
     total: number | string;
-    /**
-     * Gets or sets the items in the current page.
-     */
     items: Array<RelationTypeTreeItemResponseModel>;
 };
 
@@ -97,6 +88,10 @@ export type PostRelationResponses = {
      * OK
      */
     200: CreateRelationResponse;
+    /**
+     * Created
+     */
+    201: unknown;
 };
 
 export type PostRelationResponse = PostRelationResponses[keyof PostRelationResponses];
