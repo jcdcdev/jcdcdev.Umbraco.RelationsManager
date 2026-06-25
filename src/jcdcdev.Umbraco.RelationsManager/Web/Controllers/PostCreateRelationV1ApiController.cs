@@ -14,8 +14,7 @@ public class PostCreateRelationV1ApiController(
     : RelationsManagerV1ApiControllerBase(relationService)
 {
     [HttpPost("")]
-    [Produces<CreateRelationResponse>]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CreateRelationResponse))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult Create([FromBody] CreateRequestModel requestModel)
     {

@@ -88,10 +88,6 @@ export type PostRelationResponses = {
      * OK
      */
     200: CreateRelationResponse;
-    /**
-     * Created
-     */
-    201: unknown;
 };
 
 export type PostRelationResponse = PostRelationResponses[keyof PostRelationResponses];
