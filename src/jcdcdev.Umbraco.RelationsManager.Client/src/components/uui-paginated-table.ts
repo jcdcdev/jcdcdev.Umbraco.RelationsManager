@@ -88,7 +88,7 @@ export class UUIPaginatedTable extends LitElement {
             `;
             buttons.push(button);
         }
-        const options: Array<Option> = [{ value: '10', name: '10' }, { value: '20', name: '20' }, {
+        const options: Array<any> = [{ value: '10', name: '10' }, { value: '20', name: '20' }, {
             value: '50',
             name: '50'
         }, { value: '-1', name: 'All' }];

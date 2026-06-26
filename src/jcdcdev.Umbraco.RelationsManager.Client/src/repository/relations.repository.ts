@@ -3,10 +3,8 @@ import {UmbDataSourceResponse} from "@umbraco-cms/backoffice/repository";
 import {UmbControllerBase} from "@umbraco-cms/backoffice/class-api";
 import {RelationsManagerDataSource, IRelationsManagerDataSource} from "./relations.data-source.ts";
 import {
-	PostUmbracoRelationsmanagerApiV1RelationResponse,
-	DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse,
-	GetUmbracoRelationsmanagerApiV1RelationByIdResponse,
-	CreateRequestModel
+	CreateRelationResponse,
+	CreateRequestModel, RelationTypeModel
 } from "../api";
 
 export class RelationsManagerRepository extends UmbControllerBase {
@@ -17,15 +15,15 @@ export class RelationsManagerRepository extends UmbControllerBase {
 		this.#resource = new RelationsManagerDataSource(host);
 	}
 
-	async create(request: CreateRequestModel): Promise<UmbDataSourceResponse<PostUmbracoRelationsmanagerApiV1RelationResponse>> {
+	async create(request: CreateRequestModel): Promise<UmbDataSourceResponse<CreateRelationResponse>> {
 		return await this.#resource.create(request);
 	}
 
-	async delete(id: number): Promise<UmbDataSourceResponse<DeleteUmbracoRelationsmanagerApiV1RelationByIdResponse>> {
+	async delete(id: number): Promise<UmbDataSourceResponse> {
 		return await this.#resource.delete(id);
 	}
 
-	async get(id: string, page?: number, take?: number, sort?: string, desc?: boolean): Promise<UmbDataSourceResponse<GetUmbracoRelationsmanagerApiV1RelationByIdResponse>> {
+	async get(id: string, page?: number, take?: number, sort?: string, desc?: boolean): Promise<UmbDataSourceResponse<RelationTypeModel>> {
 		return await this.#resource.get(id, page, take, sort, desc);
 	}
 }

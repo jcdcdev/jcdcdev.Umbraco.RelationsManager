@@ -2,7 +2,7 @@ name: 🚀 Release
 on:
   workflow_dispatch:
   pull_request:
-    types: [closed]
+    types: [ closed ]
 jobs:
   release:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
@@ -13,15 +13,14 @@ jobs:
     steps:
       - name: Build
         id: build
-        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Build@v17
+        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Build@v18
         with:
           project-name: jcdcdev.Umbraco.RelationsManager
           project-path: src/jcdcdev.Umbraco.RelationsManager/jcdcdev.Umbraco.RelationsManager.csproj
           npm-working-dir: src/jcdcdev.Umbraco.RelationsManager.Client
           npm-enabled: true
-          npm-version: "22.x"
       - name: Release
-        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Release@v17
+        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Release@v18
         with:
           artifact-name: ${{ steps.build.outputs.artifact-name }}
           version: ${{ steps.build.outputs.version }}

@@ -1,8 +1,9 @@
-import { UmbControllerHost } from "@umbraco-cms/backoffice/controller-api";
-import { UmbDataSourceResponse } from "@umbraco-cms/backoffice/repository";
-import { tryExecute } from "@umbraco-cms/backoffice/resources";
-import { GetUmbracoRelationsmanagerApiV1TreeRootResponse, RelationType } from "../api";
-import { UmbTreeRootItemsRequestArgs } from "@umbraco-cms/backoffice/tree";
+import {UmbControllerHost} from "@umbraco-cms/backoffice/controller-api";
+import {UmbDataSourceResponse} from "@umbraco-cms/backoffice/repository";
+import {tryExecute} from "@umbraco-cms/backoffice/resources";
+import {PagedRelationTypeTreeItemResponseModel, RelationsManager} from "../api";
+import {UmbTreeRootItemsRequestArgs} from "@umbraco-cms/backoffice/tree";
+import {isOffsetPaginationRequest} from "@umbraco-cms/backoffice/utils";
 
 export class RelationTypeDataSource {
 
@@ -12,24 +13,32 @@ export class RelationTypeDataSource {
 		this.#host = host;
 	}
 
-	async getRoot(args: UmbTreeRootItemsRequestArgs): Promise<UmbDataSourceResponse<GetUmbracoRelationsmanagerApiV1TreeRootResponse>> {
-		const options = {
-			query: {
-				skip: args.skip,
-				take: args.take,
-			}
+	async getRoot(args: UmbTreeRootItemsRequestArgs): Promise<UmbDataSourceResponse<PagedRelationTypeTreeItemResponseModel>> {
+		let skip = 0;
+		let take = 100;
+		if (args.paging !== undefined && isOffsetPaginationRequest(args.paging)) {
+			skip = args.paging.skip;
+			take = args.paging.take;
 		}
-		return await tryExecute(this.#host, RelationType.getUmbracoRelationsmanagerApiV1TreeRoot(options));
-	}
 
-
-	async getChildren(skip: number = 0, take: number = 999): Promise<UmbDataSourceResponse<GetUmbracoRelationsmanagerApiV1TreeRootResponse>> {
 		const options = {
 			query: {
 				skip: skip,
 				take: take,
 			}
 		}
-		return await tryExecute(this.#host, RelationType.getUmbracoRelationsmanagerApiV1TreeItemNull(options));
+
+		return await tryExecute(this.#host, RelationsManager.getTreeRoot(options));
+	}
+
+
+	async getChildren(skip: number = 0, take: number = 999): Promise<UmbDataSourceResponse<PagedRelationTypeTreeItemResponseModel>> {
+		const options = {
+			query: {
+				skip: skip,
+				take: take,
+			}
+		}
+		return await tryExecute(this.#host, RelationsManager.getTreeItemNull(options));
 	}
 }
